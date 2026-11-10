@@ -15,6 +15,7 @@ export default defineConfig({
         verdeNoite: 'layouts/verde-noite/index.html',
         indigoAmbar: 'layouts/indigo-ambar/index.html',
         terracotaSalvia: 'layouts/terracota-salvia/index.html',
+        sintese: 'layouts/sintese/index.html',
       },
     },
   },

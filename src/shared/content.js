@@ -20,6 +20,12 @@ export const loyalty = [
   { name: 'Plano Bronze', cadence: '2 Kits Power Hair a cada 3 meses', href: 'https://clkdmg.site/subscribe/planobronze2kits' },
 ]
 
+export const productImages = {
+  kit: 'https://storage.googleapis.com/disk.clkdmg.site/clients/9a90c631-c739-40e3-babf-f5d724ed6ec9/images/products/a12f0485-9f04-4773-9f9b-3c58cfdf4c2d.png',
+  leaveIn: 'https://storage.googleapis.com/disk.clkdmg.site/clients/9a90c631-c739-40e3-babf-f5d724ed6ec9/images/products/9f3169b5-9f22-4069-b8c0-ece716c6cbc8.png',
+  potion: 'https://storage.googleapis.com/disk.clkdmg.site/clients/9a90c631-c739-40e3-babf-f5d724ed6ec9/images/products/a12f006c-cea7-4830-af59-4ee877b9721f.png',
+}
+
 export const products = [
   {
     name: 'Kit Power Hair',
@@ -29,6 +35,8 @@ export const products = [
     price: 'R$ 447,00',
     href: 'https://clkdmg.site/pay/9d50ac24-9916-4c9b-a303-865b1286088a',
     shape: 'kit',
+    image: productImages.kit,
+    imageAlt: 'Kit Power Hair com shampoo, condicionador e máscara em embalagens pretas e douradas',
   },
   {
     name: 'Leave-in Power Hair',
@@ -38,6 +46,8 @@ export const products = [
     price: 'R$ 157,01',
     href: 'https://clkdmg.site/pay/leaveinpowerhair',
     shape: 'leave-in',
+    image: productImages.leaveIn,
+    imageAlt: 'Frasco preto e dourado do Leave-in Power Hair',
   },
   {
     name: 'Poção Mágica da Lê',
@@ -47,6 +57,8 @@ export const products = [
     price: 'R$ 257,00',
     href: 'https://clkdmg.site/pay/pocao-magica-da-le',
     shape: 'potion',
+    image: productImages.potion,
+    imageAlt: 'Caixa e frasco da Poção Mágica da Lê em embalagem preta e dourada',
   },
 ]
 
