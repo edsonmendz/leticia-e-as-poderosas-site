@@ -1,6 +1,6 @@
 import mirror from './fotos/graciosa.jpg'
 import poderosa from './fotos/imponente.png'
-import reencontro from './fotos/presente.jpg'
+import reencontro from './fotos/firme.png'
 
 import antes1 from './antes-depois/7a30e0f17_30.jpg'
 import depois1 from './antes-depois/4a8002f6f_31.jpg'

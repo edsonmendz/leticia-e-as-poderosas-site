@@ -98,7 +98,7 @@ document.querySelectorAll('[data-compare]').forEach((frame) => {
     setPos(posFromEvent(event))
   })
   frame.addEventListener('pointermove', (event) => {
-    if (frame.hasPointerCapture(event.pointerId)) setPos(posFromEvent(event))
+    if (event.pointerType === 'mouse' || frame.hasPointerCapture(event.pointerId)) setPos(posFromEvent(event))
   })
   frame.addEventListener('keydown', (event) => {
     const current = Number(frame.getAttribute('aria-valuenow')) || 50
