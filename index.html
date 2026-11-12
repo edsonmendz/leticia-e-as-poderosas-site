@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Letícia e as Poderosas — saúde capilar em Barra da Tijuca e a linha Power Hair para o cuidado em casa." />
+    <link rel="icon" type="image/png" href="/src/assets/logo.png" />
     <title>Letícia e as Poderosas · Power Hair</title>
   </head>
   <body>
@@ -123,18 +124,27 @@
 
       <aside class="sintese-rail" aria-label="Painéis do site">
         <span class="sintese-rail__label">OS PAINÉIS</span>
+        <button type="button" class="sintese-arrow sintese-arrow--prev" aria-label="Painel anterior">↑</button>
         <div class="sintese-dots" role="group" aria-label="Ir para um painel"></div>
+        <button type="button" class="sintese-arrow sintese-arrow--next" aria-label="Próximo painel">↓</button>
       </aside>
       <div class="sintese-hint" aria-hidden="true"><span>ROLE PARA CONHECER</span><i></i></div>
-      <div class="sintese-controls" aria-label="Controles de navegação">
-        <button type="button" class="sintese-arrow sintese-arrow--prev" aria-label="Painel anterior">↑</button>
-        <button type="button" class="sintese-arrow sintese-arrow--next" aria-label="Próximo painel">↓</button>
-      </div>
       <div class="sintese-progress" aria-hidden="true"><span></span></div>
       <div class="sintese-mobile-menu" hidden>
         <a href="#poderosa" data-panel-link="1">A Poderosa</a><a href="#antes" data-panel-link="2">Antes &amp; Depois</a><a href="#salao" data-panel-link="3">No salão</a><a href="#produtos" data-panel-link="4">Power Hair</a><a href="#metodo" data-panel-link="5">O método</a><a href="#reencontro" data-panel-link="6">Reencontro</a>
       </div>
     </div>
     <script type="module" src="/src/main.js"></script>
+    <!-- Caramelo AI chatbot -->
+    <script>
+      window.carameloaiChatbot = {
+        publicApiKey: 'ct_cbak_e2d1412f-4a4d-4d29-b9c7-8d71678a7cd4_xkdfG2A3clmKZbJ',
+        project_id: 'p_93e07084-6470-4b11-9a6e-8e4a523d700c'
+      };
+    </script>
+    <script src="https://static.carameloai.com/sdk/latest/client.js"></script>
+    <script>
+      window.CarameloChatbotClient?.start();
+    </script>
   </body>
 </html>

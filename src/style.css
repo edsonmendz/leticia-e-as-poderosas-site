@@ -53,7 +53,7 @@ a { color: inherit; }
 .sintese-track { position: absolute; inset: 0; isolation: isolate; overflow-x: hidden; overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-y: contain; }
 .sintese-track::-webkit-scrollbar { display: none; }
 .sintese-panel { position: relative; min-height: 100svh; overflow: hidden; scroll-snap-align: start; }
-.sintese-panel__index { position: absolute; right: 5.2vw; bottom: 35px; color: #8a857b; font-size: .63rem; letter-spacing: .14em; }
+.sintese-panel__index { position: absolute; left: 5.2vw; bottom: 35px; color: #8a857b; font-size: .63rem; letter-spacing: .14em; }
 .sintese-panel__index i { padding: 0 6px; color: #a58a4e; font-style: normal; }
 .sintese-panel__index--light { color: rgba(243,238,228,.78); }
 .sintese-panel__index--light i { color: var(--syn-gold-light); }
@@ -220,7 +220,7 @@ a { color: inherit; }
 }
 
 /* Navegação lateral */
-.sintese-rail { position: fixed; z-index: 12; top: 50%; right: 27px; display: flex; flex-direction: column; align-items: center; gap: 17px; transform: translateY(-50%); }
+.sintese-rail { position: fixed; z-index: 15; top: 50%; right: 27px; display: flex; flex-direction: column; align-items: center; gap: 10px; transform: translateY(-50%); }
 .sintese-rail__label { writing-mode: vertical-rl; color: #8b857a; font-size: .5rem; letter-spacing: .18em; transform: rotate(180deg); }
 .sintese-dots { display: flex; flex-direction: column; gap: 9px; }
 .sintese-dot { display: grid; width: 24px; height: 24px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #98938a; cursor: pointer; transition: color .2s ease, background .2s ease; }
@@ -230,8 +230,7 @@ a { color: inherit; }
 .sintese-hint i { position: relative; display: block; width: 1px; height: 34px; background: #b49b69; }
 .sintese-hint i::after { position: absolute; bottom: 0; left: -3px; width: 7px; height: 7px; border-right: 1px solid #b49b69; border-bottom: 1px solid #b49b69; content: ''; transform: rotate(45deg); }
 .sintese-hint.is-hidden { opacity: 0; pointer-events: none; }
-.sintese-controls { position: fixed; z-index: 15; right: 74px; bottom: 22px; display: flex; gap: 6px; }
-.sintese-arrow { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid rgba(41,39,33,.24); border-radius: 50%; background: rgba(255,255,255,.7); color: #55504a; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.sintese-arrow { display: grid; width: 32px; height: 32px; place-items: center; padding: 0; border: 1px solid rgba(41,39,33,.24); border-radius: 50%; background: rgba(255,255,255,.7); color: #55504a; cursor: pointer; transition: background .2s ease, color .2s ease; }
 .sintese-arrow:hover:not(:disabled) { background: var(--syn-ink); color: white; }
 .sintese-arrow:disabled { opacity: .32; cursor: default; }
 .sintese-progress { display: none; }
@@ -262,8 +261,8 @@ a { color: inherit; }
   .sintese-track { scroll-snap-type: y mandatory; }
   .sintese-panel { display: flex; min-height: 100svh; height: auto; flex-direction: column; justify-content: center; padding: 78px 25px 70px; }
   .sintese-panel h1, .sintese-panel h2 { margin: 14px 0; font-size: clamp(42px, 11vw, 58px); }
-  .sintese-panel__index { right: 21px; bottom: 19px; font-size: .55rem; }
-  .sintese-rail, .sintese-hint, .sintese-controls { display: none; }
+  .sintese-panel__index { left: 21px; bottom: 19px; font-size: .55rem; }
+  .sintese-rail, .sintese-hint { display: none; }
   .sintese-progress { position: fixed; z-index: 45; top: calc(var(--syn-topbar) - 1px); right: 0; left: 0; display: block; height: 2px; background: rgba(118,93,45,.18); }
   .sintese-progress span { display: block; width: 100%; height: 100%; background: #a58a4e; transform: scaleX(.1429); transform-origin: left; transition: transform .25s ease; }
   .sintese-mobile-menu { position: fixed; z-index: 40; inset: var(--syn-topbar) 0 auto; display: flex; flex-direction: column; padding: 8px 25px 18px; border-bottom: 1px solid var(--syn-line); background: rgba(255,255,255,.98); }
