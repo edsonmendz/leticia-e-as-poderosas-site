@@ -144,6 +144,25 @@ a { color: inherit; }
 .sintese-services article > span { padding-top: 5px; color: var(--syn-gold); font-size: .6rem; letter-spacing: .12em; }
 .sintese-services article p { margin: 0; color: var(--syn-terra-ink); font: 500 clamp(17px, 1.35vw, 22px)/1.35 var(--font-display); }
 
+/* 05 · Passo a passo — editorial escuro + slideshow */
+.sintese-panel--passos { display: grid; grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(28px, 5vw, 76px); padding: 9vh clamp(5vw, 8vw, 120px); padding-left: clamp(8vw, 11vw, 180px); background: radial-gradient(ellipse at 77% 47%, #3a3022 0, #211b14 43%, #15130f 78%); color: var(--syn-cream); }
+.sintese-passos__copy { position: relative; z-index: 1; justify-self: center; width: 100%; max-width: 420px; text-align: center; }
+.sintese-passos__copy h2 { color: var(--syn-cream); }
+.sintese-passos__copy h2 em { color: var(--syn-gold-light); }
+.sintese-passos__copy > p:not(.sintese-eyebrow) { max-width: 340px; margin: 20px auto 0; color: var(--syn-night-muted); font-size: .82rem; line-height: 1.8; }
+.sintese-passos__stage { position: relative; justify-self: start; width: min(100%, 640px, 54.4vh); aspect-ratio: 1122 / 1402; min-width: 0; overflow: hidden; border: 1px solid rgba(217,189,131,.34); border-radius: 1px; background: #282219; box-shadow: 0 28px 70px rgba(0,0,0,.32); }
+.sintese-passos__stage::after { position: absolute; inset: 0; border: 1px solid rgba(21,19,15,.16); content: ''; pointer-events: none; }
+.sintese-passos__image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; animation: syn-passo-reveal .45s ease both; }
+.sintese-passos__controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 34px; }
+.sintese-passos__arrow { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(217,189,131,.58); border-radius: 50%; background: transparent; color: var(--syn-gold-light); font-size: 1rem; cursor: pointer; transition: color .2s, background .2s; }
+.sintese-passos__arrow:hover { background: var(--syn-gold-light); color: var(--syn-night); }
+.sintese-passos__count { color: var(--syn-cream); font-size: .65rem; letter-spacing: .13em; }
+.sintese-passos__count i { padding: 0 5px; color: var(--syn-gold-light); font-style: normal; }
+.sintese-passos__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 100%; margin: 23px auto 0; }
+.sintese-passos__dots button { width: 17px; height: 17px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.sintese-passos__dots button::after { display: block; width: 5px; height: 5px; margin: auto; border-radius: 50%; background: rgba(243,238,228,.42); content: ''; transition: background .2s, transform .2s; }
+.sintese-passos__dots button[aria-current="step"]::after { background: var(--syn-gold-light); transform: scale(1.6); }
+
 /* 05 · Produtos — terracota & sálvia */
 .sintese-panel--produtos { display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 4vh, 42px); padding: 7vh clamp(4vw, 8vw, 110px); background: var(--syn-sand); }
 .sintese-heading--produtos h2 em { color: var(--syn-terra-deep); }
@@ -236,11 +255,18 @@ a { color: inherit; }
 .sintese-progress { display: none; }
 
 @keyframes syn-glare { from { transform: translateX(-4%) skewX(-4deg); opacity: .45; } to { transform: translateX(4%) skewX(4deg); opacity: .9; } }
+@keyframes syn-passo-reveal { from { opacity: .58; transform: scale(1.025); } to { opacity: 1; transform: scale(1); } }
+
+@media (min-width: 1500px) {
+  .sintese-panel--passos { padding-left: clamp(280px, 16vw, 320px); }
+}
 
 @media (max-width: 1100px) and (min-width: 761px) {
   .sintese-panel--recepcao { grid-template-columns: .9fr 1.1fr; padding-inline: 7vw; }
   .sintese-panel--antes { gap: 4vw; padding-inline: 5vw; }
   .sintese-panel--salao { gap: 5vw; padding-inline: 8vw; }
+  .sintese-panel--passos { grid-template-columns: minmax(230px, .85fr) minmax(0, 1.15fr); gap: 3vw; padding-inline: 5vw; padding-left: 8vw; }
+  .sintese-passos__stage { width: min(100%, 54.4vh); }
   .sintese-panel--produtos { padding-inline: 5vw; }
   .sintese-panel--metodo, .sintese-panel--reencontro { padding-inline: 6vw; }
   .sintese-services { column-gap: 2.5vw; }
@@ -264,7 +290,7 @@ a { color: inherit; }
   .sintese-panel__index { left: 21px; bottom: 19px; font-size: .55rem; }
   .sintese-rail, .sintese-hint { display: none; }
   .sintese-progress { position: fixed; z-index: 45; top: calc(var(--syn-topbar) - 1px); right: 0; left: 0; display: block; height: 2px; background: rgba(118,93,45,.18); }
-  .sintese-progress span { display: block; width: 100%; height: 100%; background: #a58a4e; transform: scaleX(.1429); transform-origin: left; transition: transform .25s ease; }
+  .sintese-progress span { display: block; width: 100%; height: 100%; background: #a58a4e; transform: scaleX(.125); transform-origin: left; transition: transform .25s ease; }
   .sintese-mobile-menu { position: fixed; z-index: 40; inset: var(--syn-topbar) 0 auto; display: flex; flex-direction: column; padding: 8px 25px 18px; border-bottom: 1px solid var(--syn-line); background: rgba(255,255,255,.98); }
   .sintese-mobile-menu[hidden] { display: none; }
   .sintese-mobile-menu a { padding: 14px 0; border-bottom: 1px solid #eceae4; color: var(--syn-ink); font: 500 1.15rem var(--font-display); text-decoration: none; }
@@ -309,6 +335,17 @@ a { color: inherit; }
   .sintese-services { grid-template-columns: 1fr; }
   .sintese-services article { padding: 14px 0; }
   .sintese-services article p { font-size: 1.08rem; }
+
+  .sintese-panel--passos { gap: 18px; padding-top: 78px; }
+  .sintese-passos__copy { width: 100%; max-width: none; }
+  .sintese-passos__copy h2 { margin: 8px 0; font-size: clamp(38px, 9vw, 49px); }
+  .sintese-passos__copy > p:not(.sintese-eyebrow) { margin-top: 9px; font-size: .72rem; }
+  .sintese-passos__controls { gap: 14px; margin-top: 16px; }
+  .sintese-passos__arrow { width: 34px; height: 34px; }
+  .sintese-passos__dots { gap: 5px; max-width: none; margin-top: 10px; }
+  .sintese-passos__dots button { width: 15px; height: 15px; }
+  .sintese-passos__stage { width: min(100%, 40vh); min-height: 0; aspect-ratio: 1122 / 1402; flex: 0 0 auto; align-self: center; border-radius: 1px; }
+  .sintese-passos__stage::after { border-width: 7px; }
 
   .sintese-panel--produtos { min-height: 100svh; justify-content: space-evenly; gap: 8px; padding: 76px 20px 44px; }
   .sintese-heading--produtos { width: 100%; text-align: center; }

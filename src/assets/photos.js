@@ -11,7 +11,12 @@ import depois3 from './antes-depois/d28eedc5e_11.jpg'
 import antes4 from './antes-depois/acac694f3_PALHAO1.jpg'
 import depois4 from './antes-depois/0d6446300_PALHAO2.jpg'
 
+const stepPhotos = Object.entries(import.meta.glob('./fotos/passo*.jpg', { eager: true, import: 'default' }))
+  .sort(([a], [b]) => a.localeCompare(b, 'pt-BR', { numeric: true }))
+  .map(([, image]) => image)
+
 export const photos = { mirror, poderosa, reencontro }
+export { stepPhotos }
 
 export const beforeAfter = [
   { before: antes1, after: depois1 },

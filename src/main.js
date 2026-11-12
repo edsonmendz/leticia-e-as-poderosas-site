@@ -1,6 +1,6 @@
 import './style.css'
 import { brand, method, products, services } from './shared/content.js'
-import { photos, beforeAfter } from './assets/photos.js'
+import { photos, beforeAfter, stepPhotos } from './assets/photos.js'
 
 const track = document.querySelector('.sintese-track')
 const panels = [...document.querySelectorAll('.sintese-panel')]
@@ -60,6 +60,32 @@ document.querySelector('#sintese-steps').innerHTML = method.steps.map((step, ind
 document.querySelector('#sintese-directions').textContent = method.directions
 const kit = products.find((product) => product.shape === 'kit') || products[0]
 document.querySelector('#sintese-kit').href = kit.href
+
+const passoImage = document.querySelector('#sintese-passo-image')
+const passoCurrent = document.querySelector('#sintese-passo-current')
+const passoDots = document.querySelector('.sintese-passos__dots')
+let passoIndex = 0
+
+function showPasso(index) {
+  passoIndex = (index + stepPhotos.length) % stepPhotos.length
+  const number = String(passoIndex + 1).padStart(2, '0')
+  passoImage.src = stepPhotos[passoIndex]
+  passoImage.alt = `Imagem do passo ${passoIndex + 1} do ritual Power Hair`
+  passoCurrent.textContent = number
+  passoDots.querySelectorAll('button').forEach((button, dotIndex) => {
+    button.setAttribute('aria-current', dotIndex === passoIndex ? 'step' : 'false')
+  })
+}
+
+passoDots.innerHTML = stepPhotos.map((_, index) => `
+  <button type="button" aria-label="Ver passo ${index + 1}" aria-current="${index === 0 ? 'step' : 'false'}"></button>
+`).join('')
+passoDots.querySelectorAll('button').forEach((button, index) => {
+  button.addEventListener('click', () => showPasso(index))
+})
+document.querySelector('.sintese-passos__prev').addEventListener('click', () => showPasso(passoIndex - 1))
+document.querySelector('.sintese-passos__next').addEventListener('click', () => showPasso(passoIndex + 1))
+showPasso(0)
 
 document.querySelector('#sintese-compares').innerHTML = beforeAfter.map(({ before, after }, index) => `
   <article class="sintese-compare">
