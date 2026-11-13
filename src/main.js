@@ -82,6 +82,8 @@ passoDots.querySelectorAll('button').forEach((button, index) => {
 })
 document.querySelector('.sintese-passos__nav--prev').addEventListener('click', () => showPasso(passoIndex - 1))
 document.querySelector('.sintese-passos__nav--next').addEventListener('click', () => showPasso(passoIndex + 1))
+document.querySelector('.sintese-passos__pagination-nav--prev').addEventListener('click', () => showPasso(passoIndex - 1))
+document.querySelector('.sintese-passos__pagination-nav--next').addEventListener('click', () => showPasso(passoIndex + 1))
 showPasso(0)
 
 const compareTrack = document.querySelector('.sintese-compares__track')

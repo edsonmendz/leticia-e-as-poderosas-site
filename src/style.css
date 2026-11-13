@@ -151,12 +151,18 @@ a { color: inherit; }
 .sintese-passos__copy h2 { color: var(--syn-cream); }
 .sintese-passos__copy h2 em { color: var(--syn-gold-light); }
 .sintese-passos__copy > p:not(.sintese-eyebrow) { max-width: 340px; margin: 20px auto 0; color: var(--syn-night-muted); font-size: .82rem; line-height: 1.8; }
-.sintese-passos__viewer { display: contents; }
-.sintese-passos__stage { position: relative; justify-self: start; width: min(100%, 640px, 54.4vh); aspect-ratio: 1122 / 1402; min-width: 0; overflow: hidden; border: 1px solid rgba(217,189,131,.34); border-radius: 1px; background: #282219; box-shadow: 0 28px 70px rgba(0,0,0,.32); }
+.sintese-passos__viewer { display: flex; width: 100%; min-width: 0; align-items: center; justify-content: center; gap: clamp(10px, 1.6vw, 24px); }
+.sintese-passos__stage { position: relative; width: min(100%, 640px, 54.4vh); aspect-ratio: 1122 / 1402; min-width: 0; flex: 0 1 640px; overflow: hidden; border: 1px solid rgba(217,189,131,.34); border-radius: 1px; background: #282219; box-shadow: 0 28px 70px rgba(0,0,0,.32); }
 .sintese-passos__stage::after { position: absolute; inset: 0; border: 1px solid rgba(21,19,15,.16); content: ''; pointer-events: none; }
 .sintese-passos__image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; animation: syn-passo-reveal .45s ease both; }
-.sintese-passos__nav { display: none; }
-.sintese-passos__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 100%; margin: 23px auto 0; }
+.sintese-passos__nav { display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; padding: 0; border: 1px solid rgba(217,189,131,.58); border-radius: 50%; background: rgba(21,19,15,.6); color: var(--syn-gold-light); font: 400 1.15rem var(--font-display); cursor: pointer; transition: color .2s, background .2s; }
+.sintese-passos__nav:hover { background: var(--syn-gold-light); color: var(--syn-night); }
+.sintese-passos__viewer > .sintese-passos__nav { display: none; }
+.sintese-passos__pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 23px; }
+.sintese-passos__pagination-nav { display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; padding: 0; border: 1px solid rgba(217,189,131,.58); border-radius: 50%; background: rgba(21,19,15,.6); color: var(--syn-gold-light); cursor: pointer; transition: color .2s, background .2s; }
+.sintese-passos__pagination-nav:hover { background: var(--syn-gold-light); color: var(--syn-night); }
+.sintese-passos__pagination-nav svg { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+.sintese-passos__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 100%; margin: 0; }
 .sintese-passos__dots button { width: 17px; height: 17px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
 .sintese-passos__dots button::after { display: block; width: 5px; height: 5px; margin: auto; border-radius: 50%; background: rgba(243,238,228,.42); content: ''; transition: background .2s, transform .2s; }
 .sintese-passos__dots button[aria-current="step"]::after { background: var(--syn-gold-light); transform: scale(1.6); }
@@ -345,12 +351,15 @@ a { color: inherit; }
   .sintese-passos__copy { width: 100%; max-width: none; flex: 0 0 auto; }
   .sintese-passos__copy h2 { margin: 4px 0; font-size: clamp(34px, 8vw, 42px); }
   .sintese-passos__copy > p:not(.sintese-eyebrow) { margin-top: 6px; font-size: .68rem; line-height: 1.45; }
-  .sintese-passos__dots { gap: 5px; max-width: none; margin-top: 4px; }
+  .sintese-passos__pagination { gap: 5px; margin-top: 4px; }
+  .sintese-passos__pagination-nav { display: none; }
+  .sintese-passos__dots { gap: 5px; max-width: none; margin-top: 0; }
   .sintese-passos__dots button { width: 15px; height: 15px; }
-  .sintese-passos__viewer { display: flex; width: 100%; height: auto; flex: 0 1 auto; align-items: stretch; justify-content: center; align-self: stretch; gap: 4px; min-width: 0; }
+  .sintese-passos__viewer > .sintese-passos__nav { display: grid; }
+  .sintese-passos__viewer { width: 100%; height: auto; flex: 0 1 auto; align-items: stretch; justify-content: center; align-self: stretch; gap: 4px; min-width: 0; }
   .sintese-passos__stage { width: min(100%, 34svh, 260px); max-width: calc(100% - 44px); height: auto; min-height: 0; aspect-ratio: 1122 / 1402; flex: 0 1 auto; align-self: stretch; border-radius: 1px; }
   .sintese-passos__stage::after { border-width: 7px; }
-  .sintese-passos__nav { position: static; z-index: 2; display: grid; width: 18px; min-width: 18px; align-self: stretch; flex: 0 0 18px; place-items: center; padding: 0; border: 1px solid rgba(217,189,131,.48); border-radius: 4px; background: rgba(28,25,20,.55); color: var(--syn-gold-light); font: 400 1.15rem var(--font-display); cursor: pointer; }
+  .sintese-passos__nav { position: static; z-index: 2; width: 18px; min-width: 18px; height: auto; align-self: stretch; flex: 0 0 18px; border: 1px solid rgba(217,189,131,.48); border-radius: 4px; background: rgba(28,25,20,.55); color: var(--syn-gold-light); font: 400 1.15rem var(--font-display); }
 
   .sintese-panel--produtos { min-height: 100svh; justify-content: space-evenly; gap: 8px; padding: 76px 20px 44px; }
   .sintese-heading--produtos { width: 100%; text-align: center; }
