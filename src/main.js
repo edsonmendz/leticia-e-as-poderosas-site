@@ -87,30 +87,90 @@ document.querySelector('.sintese-passos__prev').addEventListener('click', () => 
 document.querySelector('.sintese-passos__next').addEventListener('click', () => showPasso(passoIndex + 1))
 showPasso(0)
 
-document.querySelector('#sintese-compares').innerHTML = beforeAfter.map(({ before, after }, index) => `
-  <article class="sintese-compare">
+const compareTrack = document.querySelector('.sintese-compares__track')
+const renderCompare = ({ before, after }, index, clone = false) => `
+  <article class="sintese-compare"${clone ? ' data-clone aria-hidden="true" inert' : ''}>
     <div class="sintese-compare__frame" role="slider" tabindex="0" data-compare
       aria-label="Comparação ${index + 1} de ${beforeAfter.length}: antes e depois do atendimento"
       aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
       aria-describedby="sintese-compare-hint">
       <img class="sintese-compare__img sintese-compare__img--antes" src="${before}" alt="Cabelo antes do tratamento" loading="lazy" />
       <img class="sintese-compare__img sintese-compare__img--depois" src="${after}" alt="Cabelo após o tratamento" loading="lazy" />
-      <span class="sintese-compare__label sintese-compare__label--antes" aria-hidden="true">ANTES</span>
       <span class="sintese-compare__label sintese-compare__label--depois" aria-hidden="true">DEPOIS</span>
       <span class="sintese-compare__hit" aria-hidden="true"></span>
       <span class="sintese-compare__handle" aria-hidden="true"><span class="sintese-compare__knob">‹ ›</span></span>
     </div>
   </article>
-`).join('')
+`
+compareTrack.innerHTML = [
+  renderCompare(beforeAfter[beforeAfter.length - 1], beforeAfter.length - 1, true),
+  ...beforeAfter.map((compare, index) => renderCompare(compare, index)),
+  renderCompare(beforeAfter[0], 0, true),
+].join('')
+let comparePosition = 1
+let compareTransitioning = false
+const compareMobile = window.matchMedia('(max-width: 760px)')
+const compareSlides = [...compareTrack.children]
+const updateCompareAccessibility = () => {
+  compareSlides.forEach((slide, index) => {
+    const hidden = (slide.hasAttribute('data-clone') && !compareMobile.matches)
+      || (compareMobile.matches && index !== comparePosition)
+    slide.inert = hidden
+    if (hidden) slide.setAttribute('aria-hidden', 'true')
+    else slide.removeAttribute('aria-hidden')
+  })
+}
+const setComparePosition = (position) => {
+  comparePosition = position
+  compareTrack.style.setProperty('--compare-offset', `${-comparePosition * 100}%`)
+  updateCompareAccessibility()
+}
+setComparePosition(comparePosition)
+document.querySelector('.sintese-compares__nav--prev').addEventListener('click', () => {
+  if (compareTransitioning) return
+  compareTransitioning = true
+  setComparePosition(comparePosition - 1)
+})
+document.querySelector('.sintese-compares__nav--next').addEventListener('click', () => {
+  if (compareTransitioning) return
+  compareTransitioning = true
+  setComparePosition(comparePosition + 1)
+})
+compareTrack.addEventListener('transitionend', (event) => {
+  if (event.propertyName !== 'transform') return
+  if (comparePosition === 0) {
+    compareTrack.style.transition = 'none'
+    setComparePosition(beforeAfter.length)
+  } else if (comparePosition === beforeAfter.length + 1) {
+    compareTrack.style.transition = 'none'
+    setComparePosition(1)
+  } else {
+    compareTransitioning = false
+    return
+  }
+  void compareTrack.offsetWidth
+  compareTrack.style.removeProperty('transition')
+  compareTransitioning = false
+})
+compareMobile.addEventListener('change', () => {
+  compareTransitioning = false
+  compareTrack.style.transition = 'none'
+  setComparePosition(1)
+  void compareTrack.offsetWidth
+  compareTrack.style.removeProperty('transition')
+})
+
 const compareHint = document.createElement('p')
 compareHint.id = 'sintese-compare-hint'
 compareHint.className = 'sintese-visually-hidden'
 compareHint.textContent = 'Setas para a esquerda e para a direita movem a comparação.'
 document.body.append(compareHint)
 
-document.querySelectorAll('[data-compare]').forEach((frame) => {
+compareTrack.querySelectorAll('[data-compare]').forEach((frame) => {
   const setPos = (value) => {
-    const pos = Math.max(0, Math.min(100, value))
+    const frameWidth = frame.getBoundingClientRect().width
+    const edgeInset = compareMobile.matches ? (37 / frameWidth) * 100 : 0
+    const pos = Math.max(edgeInset, Math.min(100 - edgeInset, value))
     frame.style.setProperty('--pos', `${pos}%`)
     frame.setAttribute('aria-valuenow', String(Math.round(pos)))
   }
@@ -154,8 +214,15 @@ function goTo(index) {
 }
 
 function setActive(index) {
+  const previousIndex = activeIndex
   activeIndex = Math.max(0, Math.min(panels.length - 1, index))
   app.dataset.headerTheme = panels[activeIndex].dataset.headerTheme
+  if (panels[activeIndex].id === 'metodo' && previousIndex !== activeIndex) {
+    const methodContent = document.querySelector('.sintese-metodo')
+    methodContent.classList.remove('is-visible')
+    void methodContent.offsetWidth
+    methodContent.classList.add('is-visible')
+  }
   dotButtons.forEach((button, dotIndex) => {
     button.setAttribute('aria-current', dotIndex === activeIndex ? 'step' : 'false')
   })
