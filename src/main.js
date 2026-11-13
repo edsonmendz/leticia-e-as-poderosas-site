@@ -62,16 +62,13 @@ const kit = products.find((product) => product.shape === 'kit') || products[0]
 document.querySelector('#sintese-kit').href = kit.href
 
 const passoImage = document.querySelector('#sintese-passo-image')
-const passoCurrent = document.querySelector('#sintese-passo-current')
 const passoDots = document.querySelector('.sintese-passos__dots')
 let passoIndex = 0
 
 function showPasso(index) {
   passoIndex = (index + stepPhotos.length) % stepPhotos.length
-  const number = String(passoIndex + 1).padStart(2, '0')
   passoImage.src = stepPhotos[passoIndex]
   passoImage.alt = `Imagem do passo ${passoIndex + 1} do ritual Power Hair`
-  passoCurrent.textContent = number
   passoDots.querySelectorAll('button').forEach((button, dotIndex) => {
     button.setAttribute('aria-current', dotIndex === passoIndex ? 'step' : 'false')
   })
@@ -83,8 +80,8 @@ passoDots.innerHTML = stepPhotos.map((_, index) => `
 passoDots.querySelectorAll('button').forEach((button, index) => {
   button.addEventListener('click', () => showPasso(index))
 })
-document.querySelector('.sintese-passos__prev').addEventListener('click', () => showPasso(passoIndex - 1))
-document.querySelector('.sintese-passos__next').addEventListener('click', () => showPasso(passoIndex + 1))
+document.querySelector('.sintese-passos__nav--prev').addEventListener('click', () => showPasso(passoIndex - 1))
+document.querySelector('.sintese-passos__nav--next').addEventListener('click', () => showPasso(passoIndex + 1))
 showPasso(0)
 
 const compareTrack = document.querySelector('.sintese-compares__track')
@@ -169,7 +166,7 @@ document.body.append(compareHint)
 compareTrack.querySelectorAll('[data-compare]').forEach((frame) => {
   const setPos = (value) => {
     const frameWidth = frame.getBoundingClientRect().width
-    const edgeInset = compareMobile.matches ? (37 / frameWidth) * 100 : 0
+    const edgeInset = compareMobile.matches ? (18 / frameWidth) * 100 : 0
     const pos = Math.max(edgeInset, Math.min(100 - edgeInset, value))
     frame.style.setProperty('--pos', `${pos}%`)
     frame.setAttribute('aria-valuenow', String(Math.round(pos)))
