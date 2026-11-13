@@ -295,17 +295,17 @@ a { color: inherit; }
   .sintese-mobile-menu[hidden] { display: none; }
   .sintese-mobile-menu a { padding: 14px 0; border-bottom: 1px solid #eceae4; color: var(--syn-ink); font: 500 1.15rem var(--font-display); text-decoration: none; }
 
-  .sintese-panel--recepcao { align-items: center; justify-content: center; gap: 12px; padding: 78px 25px 48px; }
+  .sintese-panel--recepcao { align-items: center; justify-content: center; gap: 12px; padding: 78px 25px 48px; background: radial-gradient(ellipse at 50% 108%, rgba(132,119,94,.14), transparent 48%), linear-gradient(180deg, #fff 0%, #fff 58%, #f4f1eb 76%, #ded8cc 100%); }
   .sintese-welcome { width: 100%; max-width: 430px; padding: 0; text-align: center; }
   .sintese-welcome__text { max-width: 310px; margin: 12px 0; font-size: .78rem; line-height: 1.55; }
   .sintese-welcome .sintese-text-link { margin-inline: auto; padding: 4px 0; }
   .sintese-welcome__note { margin-top: 18px; }
   .sintese-mirror { width: 100%; min-width: 0; min-height: 230px; flex: 0 1 34vh; }
   .sintese-mirror__frame { width: min(54vw, 215px); height: min(35vh, 305px); min-height: 225px; border-width: 7px; }
-  .sintese-plant { bottom: 5%; transform: scale(.55); }
+  .sintese-plant { bottom: 0; transform: scale(.55); }
   .sintese-plant--left { left: -8%; }
   .sintese-plant--right { right: -8%; }
-  .sintese-mirror__floor { height: 17%; }
+  .sintese-mirror__floor { bottom: 0; height: 22%; opacity: 0; }
 
   .sintese-panel--poderosa { align-items: flex-end; padding: 90px 25px 72px; }
   .sintese-poderosa__photo { left: 0; width: 100%; object-position: 25% 22%; }
